@@ -78,7 +78,8 @@ Our objective is to enhance the consistency of the Locator by using different em
 
 These language models will be used to embed the queries and the utterances in the QMSum dataset to train the locator, firstly, and to predict the relevant spans when deploying it. Below there is the architecture that we designed taking Microsoft's paper as a reference.
 
-![image](https://github.com/BakiRhina/Locator/assets/108484177/ef68d4f4-8a6e-4e4f-8659-58996fb8b535)
+![image](https://github.com/BakiRhina/Locator/assets/108484177/c4e353aa-46a2-418c-bf7f-00ab2f64916f)
+
 
 ## Summarization
 

@@ -12,6 +12,17 @@ Microsoft designed a locator which architecture is shown in the figure below. It
 
 ## Dataset (QMSum)
 
+Microsoft built a complex and precise dataset to train its locator. This data can be found in https://github.com/Yale-LILY/QMSum/tree/main and consists of 1808 query-summary pairs over 232 meetings in multiple domains.
+
+Of these 232 meetings, 162 are dedicated to the training set that will be used to train our Locator. The other meetings are reserved to the test and validation dataset, that will be used to evaluate the performance of our model, Locator and Summarizer.
+
+To fully comprehend our experiment, we will delve into the details of how this dataset was constructed in this section. In the realm of query-based meeting summarization, very few benchmark datasets exist, even fewer are multi-domain. This unique aspect makes this dataset a particularly intriguing new benchmark for such applications.
+  
+After transcribing numerous meetings, annotators manually created general questions for each meeting, followed by their associated summaries. They repeated this process for more specific questions as well. Thus, for every meeting, we have both general and specific questions along with their associated summaries, which facilitated the training of several models subsequently.
+  
+The following diagram, extracted directly from the cited article, presents the process of creating this dataset:
+
+
 
 
 ## Our approach

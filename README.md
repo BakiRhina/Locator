@@ -22,8 +22,47 @@ After transcribing numerous meetings, annotators manually created general questi
   
 The following diagram, extracted directly from the cited article, presents the process of creating this dataset:
 
+![image](https://github.com/BakiRhina/Locator/assets/108484177/65a9f47d-5d09-42b5-86ff-bab692af1f5d)
 
+To get a little bit more familiar with the dataset we have in front of us, a sample’s being shown below, where we can see the meeting 
 
+```
+{
+    "topic_list": [
+        {
+            "topic": "Introduction of petitions and prioritization of governmental matters",
+            "relevant_text_span": [["0","19"]]
+        },
+
+       [...]
+    ],
+
+    "general_query_list": [
+        {
+            "query": "Summarize the whole meeting.",
+            "answer": "The meeting of the standing committee took place to discuss matters pertinent to the Coronavirus pandemic. The main issue at stake was to ..."
+        },
+
+        [...]
+
+    ],
+    "specific_query_list": [
+        {
+            "query": "Summarize the discussion about introduction of petitions and prioritization of government matters.",
+            "answer": "The Chair brought the meeting to order, announcing that the purpose of the meeting was to discuss COVID-19 's impact on Canada. Five petitions were presented ...",
+            "relevant_text_span": [["0","19"]]
+        },
+
+        [...]
+    ],
+    "meeting_transcripts": [
+        {
+            "speaker": "The Chair (Hon. Anthony Rota (NipissingTimiskaming, Lib.))",
+            "content": "I call the meeting to order.  Welcome to the third meeting of the House of Commons Special Committee on the COVID-19 Pandemic ..."
+        },
+
+       [...]
+```
 
 ## Our approach
 

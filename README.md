@@ -64,7 +64,7 @@ To get a little bit more familiar with the dataset we have in front of us, a sam
        [...]
 ```
 
-## Our approach
+## Our Locator
 
 Our objective is to enhance the consistency of the Locator by using different embedding models on the queries and utterances of the meetings. Among these models we try **RoBERTa**, **ELECTRA**, **ELMO** and **Longformer**.
 
@@ -73,3 +73,34 @@ Our objective is to enhance the consistency of the Locator by using different em
 |----|----|-------|-------|----------|
 |Input|512|512|512|2048/4096|
 |Embedding|768|256/768|768|768|
+
+These language models will be used to embed the queries and the utterances in the QMSum dataset to train the locator, firstly, and to predict the relevant spans when deploying it. Below there is the architecture that we designed taking Microsoft's paper as a reference.
+
+![image](https://github.com/BakiRhina/Locator/assets/108484177/ef68d4f4-8a6e-4e4f-8659-58996fb8b535)
+
+## Summarization
+
+The second part of the model's architecture pertains to the summarizer. In the original paper, they utilized several models capable of summarizing texts, namely BART, PGNet, and HMNet. For our experiment, we decided to utilize only BART and a version of BART fine-tuned on meeting summaries found on Hugging Face (which we will refer to as BART_MEETING). Here is the link to this model: https://huggingface.co/knkarthick/MEETING_SUMMARY .
+
+Below we show the experimental flow of the whole system, containing the embeddings, Locator and Summarizer.
+
+![image](https://github.com/BakiRhina/Locator/assets/108484177/b1dcef46-99a8-4ce8-9d0e-b44684dc4241)
+
+## Evaluation
+
+We opted to use the same metric as in the Microsoft paper, specifically, the **ROUGE** measure. These metrics provide a quantitative assessment of summary quality and help compare different summarization approaches. For our experiment, we will focus exclusively on R-1, R-2, and R-L measures.
+
+The following table presents the ROUGE scores for all the locators with summarizers. Also, we provide the performance from (Zhong et al., 2021) at the top of the table. However, the prior performance cannot be strictly compared because it did not provide the original locator model, which means we have to build the locator model by ourselves and some differences in detail will be inevitable. According to the results obtained, the best score is for the MEETING_SUMMARIZE models and the gold spans, with an R-L of 33.1 for this model. This surpasses the best model from Microsoft (using gold spans), which scored 31.27. However, the scores with our locators are relatively modest.
+An asterisk (*) indicates that the model has been fine-tuned on the QMSum dataset. On the right side of the table, we can observe the impact that fine-tuning has had on our models' performance. For example, using fine-tuning to generate summaries from the gold spans has, on average, improved the ROUGE scores by 80%.
+
+As for ROBERTA, BERT, and ELECTRA, fine-tuning has respectively improved the scores by 50%, 71%, and 62%. Furthermore, we notice that the performance of the summaries on the relevant spans extracted by our three locators is far less consistent than on the gold spans (based on ROUGE scores). Indeed, even with the fine-tuned models, our summaries achieve an average ROUGE-L of 16.2, whereas with the gold spans, they achieve an average of 26.5, which is roughly 39% less.
+
+Despite the overall low performance of the three locators, the one using ROBERTA yielded slightly superior scores.
+
+![image](https://github.com/BakiRhina/Locator/assets/108484177/c5bbf4fd-e533-40ea-a47a-9b3e09b788d9)
+
+## Conclusion
+
+There is no doubt that this dataset is comprehensive and highly effective for such a task. Our initial goal was to improve the consistency of our summaries, and based on the ROUGE scores, we have seen a slight enhancement in our summarizer's performance. Indeed, for all our summarizers (used with gold spans), we obtain an average ROUGE-L score of 26.46, with a clear difference between the non-fine-tuned models and those fine-tuned on the QMSum datasets. Specifically, the fine-tuned models show an average improvement (all ROUGE scores combined, all locators combined) of 65.7%.
+
+As for the performance of our locators, we have an average ROUGE-L score for locators using ROBERTA, BERT, and ELECTRA, which are respectively 16.65, 15.83, and 16.1. Given that the original paper stated the average ROUGE-L when using a random locator is 11.76, this demonstrates the comparatively low performance of our locators.

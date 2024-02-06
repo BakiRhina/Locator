@@ -7,7 +7,8 @@
 
 Microsoft designed a locator which architecture is shown in the figure below. It has several parts, involving an embedding step with a Large Language Model (**BERT** in their case), a **CNN** to extract important information and features about the embeddings, and a layer of the Transformer architecture, among others.
 
---> picture Locator
+![image](https://github.com/BakiRhina/Locator/assets/108484177/3959f32d-b56c-453e-bc60-052efae6528f)
+
 
 ## Dataset (QMSum)
 

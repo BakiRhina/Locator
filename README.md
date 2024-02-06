@@ -1,5 +1,7 @@
 # Consistency in Query-based Meeting Summarization
 
+Most of the explanations in this README file (key points and useful information) have been extracted from the projects' Report file, which will be uploaded soon.
+
  Our project is inspired by an article authored by **Microsoft**, *"QMSum: A New Benchmark for Query-based Multi-domain Meeting Summarization"*. This paper introduces a comprehensive dataset designed to train models to perform **query-based multi-domain meeting summarization**. The authors suggest several potential avenues for future work, particularly focusing on improving the **consistency** between the generated summaries and the corresponding queries, as determined by the reference summaries. Therefore, our primary objective in this project is to **enhance this consistency**.
 
 
